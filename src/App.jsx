@@ -14,24 +14,26 @@ const AlhambraBankApp = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [caymanSlide, setCaymanSlide] = useState(0);
 
-  // Alhambra Palace images
+  // Alhambra Palace images - Authentic images from Granada, Spain
   const alhambraImages = [
-    { src: '/search_images/I6eIVt0uV7zq.jpg', title: 'Court of the Lions' },
-    { src: '/search_images/8Uy7xZqNhJkL.jpg', title: 'Palace Courtyard' },
-    { src: '/search_images/3Rt9mWpKfGhN.jpg', title: 'Architectural Marvel' },
-    { src: '/search_images/7Qs2nVbLcDxM.jpg', title: 'Islamic Architecture' },
-    { src: '/search_images/5Hy8kXrJtEwP.jpg', title: 'Palace Gardens' },
-    { src: '/search_images/9Zv4lBnMqSfR.jpg', title: 'Artistic Details' },
-    { src: '/search_images/2Kw6jCpNrYuT.jpg', title: 'Historical Grandeur' },
-    { src: '/search_images/4Mx1hDqLvBgS.jpg', title: 'Water Palace' }
+    { src: '/images/alhambra/2ifBxNBK7uoj.jpg', title: 'Court of the Lions' },
+    { src: '/images/alhambra/GgvjCNfklBIz.jpg', title: 'Court of the Lions - Detail' },
+    { src: '/images/alhambra/BIaA83jfMqEC.jpg', title: 'Palace Courtyard' },
+    { src: '/images/alhambra/5x24DQqcgFKU.jpg', title: 'Architectural Marvel' },
+    { src: '/images/alhambra/BoDCpkXLqd4X.jpg', title: 'Islamic Architecture' },
+    { src: '/images/alhambra/hXRYB0t5qXOn.jpg', title: 'Palace Gardens' },
+    { src: '/images/alhambra/8zSX0ZmtLvaE.jpg', title: 'Artistic Details' },
+    { src: '/images/alhambra/GH2oInCpezGO.jpeg', title: 'Historical Grandeur' }
   ];
 
-  // Cayman Islands images
+  // Cayman Islands images - Authentic images from Grand Cayman
   const caymanImages = [
-    { src: '/search_images/U1uQzYowaIcT.jpg', title: 'Seven Mile Beach' },
-    { src: '/search_images/V2vRaZpxbJdU.jpg', title: 'Grand Cayman Paradise' },
-    { src: '/search_images/W3wSbAqycKeV.jpg', title: 'Crystal Waters' },
-    { src: '/search_images/X4xTcBrzdLfW.jpg', title: 'Tropical Beauty' }
+    { src: '/images/cayman/QQDNcVkOCLhf.jpg', title: 'Seven Mile Beach Paradise' },
+    { src: '/images/cayman/G3wwKTwzXWE9.jpg', title: 'Grand Cayman Beach' },
+    { src: '/images/cayman/XOKAmns42iuM.jpg', title: 'Seven Mile Beach' },
+    { src: '/images/cayman/uvhjaEVHEcmU.jpg', title: 'Financial District' },
+    { src: '/images/cayman/ZwS9Weot45dz.jpg', title: 'Banking Hub' },
+    { src: '/images/cayman/tRrXLk1YNwjW.jpg', title: 'Cayman Coastline' }
   ];
 
   // Auto-advance slideshows
@@ -42,7 +44,7 @@ const AlhambraBankApp = () => {
 
     const caymanTimer = setInterval(() => {
       setCaymanSlide((prev) => (prev + 1) % caymanImages.length);
-    }, 10000); // 10 seconds
+    }, 6000); // 6 seconds for Cayman Islands
 
     return () => {
       clearInterval(alhambraTimer);
@@ -166,7 +168,92 @@ const AlhambraBankApp = () => {
   };
 
   const printPaperForm = () => {
-    window.print();
+    // Create a new window for printing
+    const printWindow = window.open('', '_blank');
+    const formType = accountType === 'individual' ? 'Individual' : 'Corporate';
+    
+    const printContent = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Alhambra Bank & Trust - ${formType} Account Application</title>
+        <style>
+          @media print {
+            body { font-family: Arial, sans-serif; margin: 20px; }
+            .header { text-align: center; border-bottom: 2px solid #dc2626; padding-bottom: 20px; margin-bottom: 30px; }
+            .logo { color: #dc2626; font-size: 24px; font-weight: bold; }
+            .form-section { margin-bottom: 30px; }
+            .form-section h3 { color: #dc2626; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+            .form-field { margin-bottom: 15px; display: flex; }
+            .form-field label { width: 200px; font-weight: bold; }
+            .form-field .line { border-bottom: 1px solid #000; flex: 1; margin-left: 10px; height: 20px; }
+            .signature-section { margin-top: 50px; }
+            .signature-line { border-bottom: 1px solid #000; width: 300px; margin: 20px 0; }
+          }
+        </style>
+      </head>
+      <body>
+        <div class="header">
+          <div class="logo">Alhambra Bank & Trust</div>
+          <h2>${formType} Account Application Form</h2>
+          <p>Cayman Islands | Licensed by CIMA</p>
+        </div>
+        
+        <div class="form-section">
+          <h3>Personal Information</h3>
+          <div class="form-field"><label>Full Name:</label><div class="line"></div></div>
+          <div class="form-field"><label>Date of Birth:</label><div class="line"></div></div>
+          <div class="form-field"><label>Nationality:</label><div class="line"></div></div>
+          <div class="form-field"><label>Place of Birth:</label><div class="line"></div></div>
+          <div class="form-field"><label>Occupation:</label><div class="line"></div></div>
+        </div>
+        
+        <div class="form-section">
+          <h3>Contact Information</h3>
+          <div class="form-field"><label>Address:</label><div class="line"></div></div>
+          <div class="form-field"><label>City:</label><div class="line"></div></div>
+          <div class="form-field"><label>Country:</label><div class="line"></div></div>
+          <div class="form-field"><label>Phone:</label><div class="line"></div></div>
+          <div class="form-field"><label>Email:</label><div class="line"></div></div>
+        </div>
+        
+        <div class="form-section">
+          <h3>Banking Information</h3>
+          <div class="form-field"><label>Account Type:</label><div class="line"></div></div>
+          <div class="form-field"><label>Initial Deposit:</label><div class="line"></div></div>
+          <div class="form-field"><label>Source of Funds:</label><div class="line"></div></div>
+        </div>
+        
+        <div class="signature-section">
+          <h3>Declarations and Signatures</h3>
+          <p>I hereby declare that the information provided is true and accurate.</p>
+          <div style="display: flex; justify-content: space-between; margin-top: 40px;">
+            <div>
+              <div class="signature-line"></div>
+              <p>Applicant Signature</p>
+            </div>
+            <div>
+              <div class="signature-line"></div>
+              <p>Date</p>
+            </div>
+          </div>
+        </div>
+        
+        <div style="margin-top: 50px; font-size: 12px; color: #666;">
+          <p>For Bank Use Only:</p>
+          <div class="form-field"><label>Account Number:</label><div class="line"></div></div>
+          <div class="form-field"><label>Processed by:</label><div class="line"></div></div>
+          <div class="form-field"><label>Date Processed:</label><div class="line"></div></div>
+        </div>
+      </body>
+      </html>
+    `;
+    
+    printWindow.document.write(printContent);
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
+    printWindow.close();
   };
 
   const saveProgress = () => {
@@ -418,6 +505,17 @@ const AlhambraBankApp = () => {
           <h4 className="text-lg font-semibold text-red-700 mb-4">
             📋 Account Opening Workflow ({language === 'en' ? 'English' : language === 'es' ? 'Español' : language === 'ar' ? 'العربية' : '中文'})
           </h4>
+          
+          {/* Workflow Diagram */}
+          <div className="mb-6 text-center">
+            <img 
+              src="/images/workflow/AX0r36A0vspe.jpg" 
+              alt="Digital Bank Client Onboarding Process Flow"
+              className="mx-auto max-w-full h-auto rounded-lg shadow-md border border-gray-200"
+              style={{ maxHeight: '300px' }}
+            />
+            <p className="text-sm text-gray-600 mt-2">Digital Banking Onboarding Process</p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               { step: 1, title: language === 'en' ? 'Application' : language === 'es' ? 'Aplicación' : language === 'ar' ? 'التطبيق' : '申请', desc: language === 'en' ? 'Complete digital form' : language === 'es' ? 'Completar formulario digital' : language === 'ar' ? 'إكمال النموذج الرقمي' : '完成数字表格' },
@@ -613,23 +711,29 @@ const AlhambraBankApp = () => {
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="lg:w-2/3">
               <h2 className="text-3xl font-bold text-red-700 mb-8">Why Choose Cayman Islands</h2>
+              <div className="mb-6 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                <p className="text-gray-700 leading-relaxed">
+                  <strong>The Cayman Islands</strong> is one of the world's premier international financial centers, hosting 40 of the world's largest 50 banks. 
+                  With an AAA sovereign credit rating and decades of regulatory excellence, it offers unparalleled advantages for global banking and wealth management.
+                </p>
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
-                  { icon: "🏝️", title: "Economic Strengths", desc: "Stable economic environment" },
-                  { icon: "📊", title: "Financial Excellence", desc: "World-class financial services" },
-                  { icon: "🌐", title: "Strategic Benefits", desc: "Strategic geographic location" },
-                  { icon: "💼", title: "Global Partnership", desc: "International connectivity" },
-                  { icon: "🔐", title: "Secure Environment", desc: "Political stability" },
-                  { icon: "💰", title: "Asset Protection", desc: "Strong asset protection laws" },
-                  { icon: "🤫", title: "Confidentiality", desc: "Banking privacy protection" },
-                  { icon: "💸", title: "Diversification of Investment", desc: "Investment diversification opportunities" }
+                  { icon: "🏛️", title: "Regulatory Excellence", desc: "Licensed by CIMA (Cayman Islands Monetary Authority) with world-class regulatory framework" },
+                  { icon: "💰", title: "Tax Neutrality", desc: "No direct taxation on individuals or corporations - optimal for wealth preservation" },
+                  { icon: "🔒", title: "Asset Protection", desc: "Robust asset protection laws and banking secrecy provisions" },
+                  { icon: "🌍", title: "Global Connectivity", desc: "Strategic location between Americas, Europe, and Asia with excellent infrastructure" },
+                  { icon: "⚖️", title: "Legal Framework", desc: "English common law system with sophisticated financial legislation" },
+                  { icon: "🏦", title: "Banking Hub", desc: "Home to 40 of the world's top 50 banks and leading financial institutions" },
+                  { icon: "📈", title: "Economic Stability", desc: "AAA sovereign credit rating and stable political environment" },
+                  { icon: "🛡️", title: "Privacy Protection", desc: "Strong confidentiality laws protecting client information and transactions" }
                 ].map((item, index) => (
-                  <div key={index} className="bg-gray-50 p-4 rounded-lg border border-red-200">
+                  <div key={index} className="bg-gray-50 p-4 rounded-lg border border-red-200 hover:shadow-md transition-shadow">
                     <div className="flex items-center mb-2">
                       <span className="text-2xl mr-3">{item.icon}</span>
                       <h3 className="text-lg font-semibold text-red-700">{item.title}</h3>
                     </div>
-                    <p className="text-gray-600">{item.desc}</p>
+                    <p className="text-gray-600 text-sm">{item.desc}</p>
                   </div>
                 ))}
               </div>
@@ -670,9 +774,9 @@ const AlhambraBankApp = () => {
             <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="md:w-1/3">
                 <img 
-                  src="/founder-ali-alsari.jpg" 
-                  alt="Ali Alsari - Founder" 
-                  className="w-full max-w-xs mx-auto rounded-lg shadow-lg"
+                  src="/images/founder_ali_alsari.webp" 
+                  alt="Ali Alsari - Non-Executive Board Director" 
+                  className="w-full max-w-xs mx-auto rounded-lg shadow-lg border-2 border-red-200"
                   onError={(e) => {
                     e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDIwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+CjxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzMCIgZmlsbD0iIzlCOUJBMyIvPgo8cGF0aCBkPSJNNTAgMTgwQzUwIDE1MCA3MyAxMjAgMTAwIDEyMEMxMjcgMTIwIDE1MCAxNTAgMTUwIDE4MEgxNTBWMjQwSDUwVjE4MFoiIGZpbGw9IiM5QjlCQTMiLz4KPC9zdmc+';
                   }}
@@ -686,10 +790,8 @@ const AlhambraBankApp = () => {
                   <p className="text-gray-700 leading-relaxed mb-6">
                     Alhambra Bank was established to disrupt these conventions and forge a financial institution that genuinely serves everyone on equal terms. Our mission is to create a secure, inclusive, and empowering environment where both individuals and businesses can flourish without the threat of discrimination or exclusion.
                   </p>
-                  <blockquote className="bg-red-50 border-l-4 border-red-500 pl-4 py-2 mb-4">
-                    <p className="text-red-700 italic">
-                      "Alhambra Bank is more than just a bank—it's a movement toward a world where financial institutions reflect the values of fairness, equality, and respect for all. We are here to redefine what it means to be a bank, one that prioritizes people over profit and inclusion over exclusion."
-                    </p>
+                  <blockquote className="border-l-4 border-red-500 pl-4 italic text-gray-700 mb-6">
+                    "Alhambra Bank is more than just a bank—it's a movement toward a world where financial institutions reflect the values of fairness, equality, and respect for all. We are here to redefine what it means to be a bank, one that prioritizes people over profit and inclusion over exclusion."
                   </blockquote>
                   <div className="text-right">
                     <p className="font-semibold text-red-700">Ali Alsari</p>
