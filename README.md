@@ -92,7 +92,7 @@ alhambra-interactive/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/[username]/alhambra-bank-trust.git
+   git clone https://github.com/abt2025/alhambra-bank-trust.git
    cd alhambra-bank-trust
    ```
 

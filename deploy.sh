@@ -32,7 +32,7 @@ git push origin main || echo "Push failed - check GitHub authentication"
 
 echo "✅ Deployment completed successfully!"
 echo "🌐 Live URL: https://8080-i4wat3j76sdaf8wbzi7l8-5761bc9a.manusvm.computer"
-echo "📊 GitHub Repository: https://github.com/[username]/alhambra-bank-trust"
+echo "📊 GitHub Repository: https://github.com/abt2025/alhambra-bank-trust"
 
 # Optional: Deploy to additional platforms
 if [ "$1" = "--deploy-all" ]; then
