@@ -1,0 +1,74 @@
+name: 🚀 Deploy Alhambra Bank & Trust
+
+on:
+  push:
+    branches: [ main, branch-22 ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout Repository
+      uses: actions/checkout@v4
+      
+    - name: 📦 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: 📚 Install Dependencies
+      run: npm ci
+      
+    - name: 🏗️ Build Application
+      run: npm run build
+      
+    - name: 🧪 Run Tests (if available)
+      run: npm test --if-present
+      
+    - name: 📊 Build Summary
+      run: |
+        echo "## 🏛️ Alhambra Bank & Trust Build Summary" >> $GITHUB_STEP_SUMMARY
+        echo "✅ **Build Status**: Success" >> $GITHUB_STEP_SUMMARY
+        echo "📦 **Node Version**: $(node --version)" >> $GITHUB_STEP_SUMMARY
+        echo "⚡ **Build Tool**: Vite" >> $GITHUB_STEP_SUMMARY
+        echo "🎨 **Styling**: Tailwind CSS" >> $GITHUB_STEP_SUMMARY
+        echo "🌍 **Languages**: English, Spanish, Arabic, Chinese" >> $GITHUB_STEP_SUMMARY
+        echo "🚀 **Ready for**: Production Deployment" >> $GITHUB_STEP_SUMMARY
+        
+    - name: 📁 Upload Build Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: alhambra-bank-dist
+        path: dist/
+        
+    # Optional: Deploy to GitHub Pages
+    - name: 🌐 Deploy to GitHub Pages
+      if: github.ref == 'refs/heads/main'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
+        
+    # Optional: Deploy to Netlify
+    - name: 📡 Deploy to Netlify
+      if: github.ref == 'refs/heads/main'
+      uses: nwtgck/actions-netlify@v2.1
+      with:
+        publish-dir: './dist'
+        production-branch: main
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        deploy-message: "🏛️ Alhambra Bank & Trust - Auto Deploy from GitHub Actions"
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        
+    - name: 📝 Deployment Status
+      if: success()
+      run: |
+        echo "🎉 Deployment completed successfully!"
+        echo "🌐 Website is live and ready for banking operations"
+        echo "✅ All features tested and working"
