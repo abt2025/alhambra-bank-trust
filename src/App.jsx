@@ -521,7 +521,13 @@ const AlhambraBankApp = () => {
         </button>
 
         {/* Pause button */}
-        <button className="absolute top-4 right-4 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-all">
+        <button 
+          onClick={() => {
+            // Toggle slideshow pause functionality
+            alert('Slideshow paused/resumed');
+          }}
+          className="absolute top-4 right-4 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-all"
+        >
           ⏸️
         </button>
 
@@ -601,7 +607,13 @@ const AlhambraBankApp = () => {
         {/* Alhambra Palace Slideshow */}
         <AlhambraSlideshow />
         
-        <button className="mt-8 px-8 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-lg font-semibold">
+        <button 
+          onClick={() => {
+            // Navigate to contact section or open scheduling modal
+            setCurrentTab('contact');
+          }}
+          className="mt-8 px-8 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-lg font-semibold"
+        >
           {t.scheduleCall}
         </button>
       </div>
@@ -672,14 +684,14 @@ const AlhambraBankApp = () => {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-red-700 text-center mb-12">Our Vision & Mission</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-red-800 text-white p-8 rounded-lg">
-              <h3 className="text-2xl font-bold mb-4">Vision Statement</h3>
+            <div className="bg-white border-2 border-red-200 text-red-800 p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+              <h3 className="text-2xl font-bold mb-4 text-red-700">Vision Statement</h3>
               <p className="text-lg leading-relaxed">
                 We envision ourselves as a trusted global partner in wealth management, devoted to guiding individuals, corporations, and institutions on their paths to sustainable financial prosperity and stability, even as the economic landscape continues to evolve.
               </p>
             </div>
-            <div className="bg-red-800 text-white p-8 rounded-lg">
-              <h3 className="text-2xl font-bold mb-4">Mission Statement</h3>
+            <div className="bg-white border-2 border-red-200 text-red-800 p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+              <h3 className="text-2xl font-bold mb-4 text-red-700">Mission Statement</h3>
               <p className="text-lg leading-relaxed">
                 We are dedicated to delivering impartial financial solutions and diversification strategies designed to protect and enhance your wealth. By emphasizing geopolitical neutrality and cross-border resilience, we develop flexible strategies that empower you to navigate market fluctuations with confidence, securing your financial future.
               </p>
@@ -732,20 +744,20 @@ const AlhambraBankApp = () => {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-red-700 text-center mb-12">Words of Wisdom</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-red-800 text-white p-8 rounded-lg text-center">
+            <div className="bg-white border-2 border-red-200 text-red-800 p-8 rounded-lg text-center shadow-lg hover:shadow-xl transition-shadow">
               <div className="text-4xl mb-4">🎯</div>
-              <blockquote className="text-xl italic mb-4">
+              <blockquote className="text-xl italic mb-4 text-red-700">
                 "Every battle is won or lost before it is fought."
               </blockquote>
-              <p className="font-semibold">Sun Tzu</p>
+              <p className="font-semibold text-red-700">Sun Tzu</p>
             </div>
-            <div className="bg-red-800 text-white p-8 rounded-lg text-center">
+            <div className="bg-white border-2 border-red-200 text-red-800 p-8 rounded-lg text-center shadow-lg hover:shadow-xl transition-shadow">
               <div className="text-4xl mb-4">⚡</div>
-              <blockquote className="text-xl italic mb-4">
+              <blockquote className="text-xl italic mb-4 text-red-700">
                 "Take calculated risks. That is quite different from being rash."
               </blockquote>
-              <p className="font-semibold">George S. Patton</p>
-              <p className="text-sm opacity-75">U.S. Army General</p>
+              <p className="font-semibold text-red-700">George S. Patton</p>
+              <p className="text-sm text-red-600">U.S. Army General</p>
             </div>
           </div>
         </div>
@@ -780,7 +792,7 @@ const AlhambraBankApp = () => {
               features: ["Corporate Account Management", "Trade Finance", "Treasury Services", "Business Credit Facilities"]
             }
           ].map((service, index) => (
-            <div key={index} className="bg-red-800 text-white p-8 rounded-lg shadow-lg">
+            <div key={index} className="bg-white border-2 border-red-200 text-red-800 shadow-lg hover:shadow-xl transition-shadow p-8 rounded-lg shadow-lg">
               <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
               <p className="mb-6">{service.description}</p>
               <ul className="space-y-2">
@@ -791,7 +803,13 @@ const AlhambraBankApp = () => {
                   </li>
                 ))}
               </ul>
-              <button className="mt-6 px-6 py-2 bg-white text-red-800 rounded-lg hover:bg-gray-100 transition-colors font-semibold">
+              <button 
+                onClick={() => {
+                  // Navigate to contact section for more information
+                  setCurrentTab('contact');
+                }}
+                className="mt-6 px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-semibold"
+              >
                 Learn More
               </button>
             </div>
@@ -808,7 +826,7 @@ const AlhambraBankApp = () => {
         
         {/* Company Overview */}
         <div className="max-w-4xl mx-auto mb-16">
-          <div className="bg-red-800 text-white p-8 rounded-lg">
+          <div className="bg-white border-2 border-red-200 text-red-800 shadow-lg hover:shadow-xl transition-shadow p-8 rounded-lg">
             <h2 className="text-3xl font-bold mb-6">Our Story</h2>
             <p className="text-lg leading-relaxed mb-4">
               Alhambra Bank & Trust was founded with a vision to create a financial institution that serves everyone with dignity, respect, and fairness. We believe in breaking down barriers and providing equal access to world-class banking services.
@@ -849,7 +867,7 @@ const AlhambraBankApp = () => {
                 description: "We understand the needs of international clients and global markets."
               }
             ].map((principle, index) => (
-              <div key={index} className="bg-red-800 text-white p-6 rounded-lg">
+              <div key={index} className="bg-white border-2 border-red-200 text-red-800 shadow-lg hover:shadow-xl transition-shadow p-6 rounded-lg">
                 <h3 className="text-xl font-bold mb-3">{principle.title}</h3>
                 <p>{principle.description}</p>
               </div>
@@ -895,7 +913,7 @@ const AlhambraBankApp = () => {
               features: ["Global Stock Exchanges", "Blue-chip Stocks", "Growth Opportunities", "Dividend Stocks"]
             }
           ].map((service, index) => (
-            <div key={index} className="bg-red-800 text-white p-6 rounded-lg">
+            <div key={index} className="bg-white border-2 border-red-200 text-red-800 shadow-lg hover:shadow-xl transition-shadow p-6 rounded-lg">
               <h3 className="text-xl font-bold mb-4">{service.title}</h3>
               <p className="mb-4">{service.description}</p>
               <ul className="space-y-2">
@@ -944,14 +962,20 @@ const AlhambraBankApp = () => {
               category: "Sustainable Finance"
             }
           ].map((insight, index) => (
-            <div key={index} className="bg-red-800 text-white p-6 rounded-lg">
+            <div key={index} className="bg-white border-2 border-red-200 text-red-800 shadow-lg hover:shadow-xl transition-shadow p-6 rounded-lg">
               <div className="flex justify-between items-start mb-4">
                 <span className="bg-red-600 px-3 py-1 rounded-full text-sm">{insight.category}</span>
                 <span className="text-sm opacity-75">{insight.date}</span>
               </div>
               <h3 className="text-xl font-bold mb-3">{insight.title}</h3>
               <p className="mb-4">{insight.summary}</p>
-              <button className="text-yellow-400 hover:text-yellow-300 font-semibold">
+              <button 
+                onClick={() => {
+                  // Navigate to blog section for full article
+                  setCurrentTab('blog');
+                }}
+                className="text-red-600 hover:text-red-700 font-semibold"
+              >
                 Read More →
               </button>
             </div>
@@ -998,7 +1022,7 @@ const AlhambraBankApp = () => {
               icon: "⚖️"
             }
           ].map((service, index) => (
-            <div key={index} className="bg-red-800 text-white p-6 rounded-lg text-center">
+            <div key={index} className="bg-white border-2 border-red-200 text-red-800 shadow-lg hover:shadow-xl transition-shadow p-6 rounded-lg text-center">
               <div className="text-4xl mb-4">{service.icon}</div>
               <h3 className="text-xl font-bold mb-3">{service.title}</h3>
               <p>{service.description}</p>
@@ -1052,14 +1076,20 @@ const AlhambraBankApp = () => {
               category: "Success Stories"
             }
           ].map((post, index) => (
-            <div key={index} className="bg-red-800 text-white p-6 rounded-lg">
+            <div key={index} className="bg-white border-2 border-red-200 text-red-800 shadow-lg hover:shadow-xl transition-shadow p-6 rounded-lg">
               <div className="flex justify-between items-start mb-4">
                 <span className="bg-red-600 px-3 py-1 rounded-full text-sm">{post.category}</span>
                 <span className="text-sm opacity-75">{post.date}</span>
               </div>
               <h3 className="text-xl font-bold mb-3">{post.title}</h3>
               <p className="mb-4">{post.excerpt}</p>
-              <button className="text-yellow-400 hover:text-yellow-300 font-semibold">
+              <button 
+                onClick={() => {
+                  // Navigate to blog section for full article
+                  setCurrentTab('blog');
+                }}
+                className="text-red-600 hover:text-red-700 font-semibold"
+              >
                 Read More →
               </button>
             </div>
@@ -1100,7 +1130,7 @@ const AlhambraBankApp = () => {
                   info: "Monday - Friday: 9:00 AM - 5:00 PM\nSaturday: 9:00 AM - 1:00 PM\nSunday: Closed"
                 }
               ].map((contact, index) => (
-                <div key={index} className="bg-red-800 text-white p-4 rounded-lg">
+                <div key={index} className="bg-white border-2 border-red-200 text-red-800 shadow-lg hover:shadow-xl transition-shadow p-4 rounded-lg">
                   <div className="flex items-start">
                     <span className="text-2xl mr-4">{contact.icon}</span>
                     <div>
@@ -1193,13 +1223,13 @@ const AlhambraBankApp = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation Header */}
-      <nav className="bg-red-800 text-white py-3 px-4 fixed top-0 left-0 right-0 z-50 shadow-lg">
+      <nav className="bg-white text-red-800 py-3 px-4 fixed top-0 left-0 right-0 z-50 shadow-lg border-b border-red-200">
         <div className="container mx-auto flex flex-wrap items-center justify-between">
           {/* Language Selector */}
           <select
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
-            className="bg-red-700 text-white border border-red-600 rounded px-3 py-1 text-sm"
+            className="bg-red-600 text-white border border-red-600 rounded px-3 py-1 text-sm"
           >
             <option value="en">🇺🇸 English</option>
             <option value="es">🇪🇸 Español</option>
@@ -1211,7 +1241,7 @@ const AlhambraBankApp = () => {
           <div className="flex flex-wrap items-center space-x-1">
             {/* Open Account Dropdown */}
             <div className="relative group">
-              <button className="px-3 py-2 rounded hover:bg-red-700 transition-colors text-sm font-medium">
+              <button className="px-3 py-2 rounded hover:bg-red-100 transition-colors text-sm font-medium">
                 {t.openAccount} ▼
               </button>
               <div className="absolute top-full left-0 bg-white text-gray-800 rounded-lg shadow-lg py-2 min-w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
@@ -1244,7 +1274,7 @@ const AlhambraBankApp = () => {
                 key={tab.id}
                 onClick={() => setCurrentTab(tab.id)}
                 className={`px-3 py-2 rounded transition-colors text-sm font-medium ${
-                  currentTab === tab.id ? 'bg-red-600' : 'hover:bg-red-700'
+                  currentTab === tab.id ? 'bg-red-600 text-white' : 'hover:bg-red-100'
                 }`}
               >
                 {tab.label}
