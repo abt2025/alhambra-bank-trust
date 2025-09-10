@@ -534,7 +534,7 @@ const AlhambraBankApp = () => {
           </button>
           <button 
             onClick={loadProgress}
-            className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
+            className="px-4 py-2 bg-red-800 text-white rounded-lg hover:bg-red-900 transition-colors"
           >
             📂 Load Progress
           </button>
@@ -565,7 +565,7 @@ const AlhambraBankApp = () => {
 
   // Slideshow components
   const AlhambraSlideshow = () => (
-    <div className="relative w-full max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden border-4 border-yellow-400">
+    <div className="relative w-full max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden border-4 border-red-800">
       <div className="relative h-96">
         <img
           src={alhambraImages[currentSlide]?.src}
@@ -624,7 +624,7 @@ const AlhambraBankApp = () => {
       {/* Progress bar */}
       <div className="w-full bg-gray-200 h-1">
         <div 
-          className="bg-yellow-500 h-1 transition-all duration-300"
+          className="bg-red-800 h-1 transition-all duration-300"
           style={{ width: `${((currentSlide + 1) / alhambraImages.length) * 100}%` }}
         />
       </div>
@@ -868,7 +868,7 @@ const AlhambraBankApp = () => {
               <ul className="space-y-2">
                 {service.features.map((feature, i) => (
                   <li key={i} className="flex items-center">
-                    <span className="text-yellow-400 mr-2">✓</span>
+                    <span className="text-red-800 mr-2">✓</span>
                     {feature}
                   </li>
                 ))}
@@ -989,7 +989,7 @@ const AlhambraBankApp = () => {
               <ul className="space-y-2">
                 {service.features.map((feature, i) => (
                   <li key={i} className="flex items-center">
-                    <span className="text-yellow-400 mr-2">✓</span>
+                    <span className="text-red-800 mr-2">✓</span>
                     {feature}
                   </li>
                 ))}
@@ -1370,7 +1370,7 @@ const AlhambraBankApp = () => {
             ))}
 
             {/* Customer Login */}
-            <button className="px-3 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 transition-colors text-sm font-medium">
+            <button className="px-3 py-2 bg-red-800 text-white rounded hover:bg-red-900 transition-colors text-sm font-medium">
               {t.customerLogin}
             </button>
           </div>
