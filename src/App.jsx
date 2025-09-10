@@ -186,6 +186,11 @@ const AlhambraBankApp = () => {
       language,
       timestamp: Date.now()
     };
+    
+    // Save to localStorage for automatic recovery
+    localStorage.setItem(`alhambra_${accountType}_progress`, JSON.stringify(progressData));
+    
+    // Also provide download option
     const dataStr = JSON.stringify(progressData, null, 2);
     const dataBlob = new Blob([dataStr], { type: 'application/json' });
     const url = URL.createObjectURL(dataBlob);
@@ -193,6 +198,32 @@ const AlhambraBankApp = () => {
     link.href = url;
     link.download = `alhambra-bank-application-${Date.now()}.json`;
     link.click();
+    
+    alert('Progress saved! You can return later to continue your application.');
+  };
+
+  const loadProgress = () => {
+    const savedData = localStorage.getItem(`alhambra_${accountType}_progress`);
+    if (savedData) {
+      try {
+        const progressData = JSON.parse(savedData);
+        setFormData(progressData.formData || {});
+        setCurrentStep(progressData.currentStep || 1);
+        setLanguage(progressData.language || 'en');
+        alert('Previous progress loaded successfully!');
+        return true;
+      } catch (error) {
+        console.error('Error loading progress:', error);
+      }
+    }
+    return false;
+  };
+
+  const clearProgress = () => {
+    localStorage.removeItem(`alhambra_${accountType}_progress`);
+    setFormData({});
+    setCurrentStep(1);
+    alert('Progress cleared. Starting fresh application.');
   };
 
   // Individual form steps
@@ -327,6 +358,13 @@ const AlhambraBankApp = () => {
   };
 
   const validateCurrentStep = () => {
+    // Allow progression even with partial completion
+    // Users can save progress and return later
+    return true;
+  };
+
+  const validateRequiredFields = () => {
+    // Only validate required fields for final submission
     const currentStepData = getCurrentSteps()[currentStep - 1];
     if (!currentStepData) return false;
 
@@ -339,9 +377,29 @@ const AlhambraBankApp = () => {
   };
 
   const handleNextStep = () => {
-    if (validateCurrentStep() && currentStep < getCurrentSteps().length) {
+    // Save current progress to localStorage
+    saveProgress();
+    
+    if (currentStep < getCurrentSteps().length) {
       setCurrentStep(currentStep + 1);
+    } else {
+      // Final submission - validate required fields
+      if (validateRequiredFields()) {
+        handleSubmitApplication();
+      } else {
+        alert('Please fill in all required fields before submitting.');
+      }
     }
+  };
+
+  const handleSubmitApplication = () => {
+    alert(`${accountType === 'individual' ? 'Individual' : 'Corporate'} account application submitted successfully! You will receive a confirmation email shortly.`);
+    // Reset form
+    setFormData({});
+    setCurrentStep(1);
+    setShowOnboarding(false);
+    // Clear saved progress
+    localStorage.removeItem(`alhambra_${accountType}_progress`);
   };
 
   const handlePrevStep = () => {
@@ -455,7 +513,7 @@ const AlhambraBankApp = () => {
         </div>
 
         {/* Form Controls */}
-        <div className="mb-6 flex flex-wrap gap-4 justify-center">
+        <div className="flex flex-wrap gap-4 mb-8">
           <button 
             onClick={printPaperForm}
             className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
@@ -473,6 +531,18 @@ const AlhambraBankApp = () => {
             className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
           >
             💾 Save Progress
+          </button>
+          <button 
+            onClick={loadProgress}
+            className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
+          >
+            📂 Load Progress
+          </button>
+          <button 
+            onClick={clearProgress}
+            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+          >
+            🗑️ Clear Progress
           </button>
         </div>
 
@@ -1250,6 +1320,15 @@ const AlhambraBankApp = () => {
                     setAccountType('individual');
                     setCurrentStep(1);
                     setShowOnboarding(true);
+                    // Check for saved progress after modal opens
+                    setTimeout(() => {
+                      const savedData = localStorage.getItem('alhambra_individual_progress');
+                      if (savedData) {
+                        if (confirm('You have a saved individual application. Would you like to continue where you left off?')) {
+                          loadProgress();
+                        }
+                      }
+                    }, 100);
                   }}
                   className="block w-full text-left px-4 py-2 hover:bg-gray-100 transition-colors"
                 >
@@ -1260,6 +1339,15 @@ const AlhambraBankApp = () => {
                     setAccountType('corporate');
                     setCurrentStep(1);
                     setShowOnboarding(true);
+                    // Check for saved progress after modal opens
+                    setTimeout(() => {
+                      const savedData = localStorage.getItem('alhambra_corporate_progress');
+                      if (savedData) {
+                        if (confirm('You have a saved corporate application. Would you like to continue where you left off?')) {
+                          loadProgress();
+                        }
+                      }
+                    }, 100);
                   }}
                   className="block w-full text-left px-4 py-2 hover:bg-gray-100 transition-colors"
                 >
@@ -1352,12 +1440,7 @@ const AlhambraBankApp = () => {
               
               <button
                 onClick={handleNextStep}
-                disabled={!validateCurrentStep()}
-                className={`px-6 py-3 rounded-lg font-medium ${
-                  !validateCurrentStep() 
-                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
-                    : 'bg-red-600 text-white hover:bg-red-700'
-                } transition-all duration-300`}
+                className="px-6 py-3 rounded-lg font-medium bg-red-600 text-white hover:bg-red-700 transition-all duration-300"
               >
                 {currentStep === getCurrentSteps().length ? 'Submit Application' : 'Next'}
               </button>
