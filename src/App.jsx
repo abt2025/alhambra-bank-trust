@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import { individualFormFields, corporateFormFields, formSubmissionInstructions } from './formFields.js';
 
 const AlhambraBankApp = () => {
   // Core state management
@@ -168,92 +169,13 @@ const AlhambraBankApp = () => {
   };
 
   const printPaperForm = () => {
-    // Create a new window for printing
-    const printWindow = window.open('', '_blank');
-    const formType = accountType === 'individual' ? 'Individual' : 'Corporate';
+    // Use authentic PDF forms
+    const pdfUrl = accountType === 'individual' 
+      ? '/2025ABTIndividualFormApplication.pdf'
+      : '/2025ABTcORPORATEFormApplication.pdf';
     
-    const printContent = `
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <title>Alhambra Bank & Trust - ${formType} Account Application</title>
-        <style>
-          @media print {
-            body { font-family: Arial, sans-serif; margin: 20px; }
-            .header { text-align: center; border-bottom: 2px solid #dc2626; padding-bottom: 20px; margin-bottom: 30px; }
-            .logo { color: #dc2626; font-size: 24px; font-weight: bold; }
-            .form-section { margin-bottom: 30px; }
-            .form-section h3 { color: #dc2626; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
-            .form-field { margin-bottom: 15px; display: flex; }
-            .form-field label { width: 200px; font-weight: bold; }
-            .form-field .line { border-bottom: 1px solid #000; flex: 1; margin-left: 10px; height: 20px; }
-            .signature-section { margin-top: 50px; }
-            .signature-line { border-bottom: 1px solid #000; width: 300px; margin: 20px 0; }
-          }
-        </style>
-      </head>
-      <body>
-        <div class="header">
-          <div class="logo">Alhambra Bank & Trust</div>
-          <h2>${formType} Account Application Form</h2>
-          <p>Cayman Islands | Licensed by CIMA</p>
-        </div>
-        
-        <div class="form-section">
-          <h3>Personal Information</h3>
-          <div class="form-field"><label>Full Name:</label><div class="line"></div></div>
-          <div class="form-field"><label>Date of Birth:</label><div class="line"></div></div>
-          <div class="form-field"><label>Nationality:</label><div class="line"></div></div>
-          <div class="form-field"><label>Place of Birth:</label><div class="line"></div></div>
-          <div class="form-field"><label>Occupation:</label><div class="line"></div></div>
-        </div>
-        
-        <div class="form-section">
-          <h3>Contact Information</h3>
-          <div class="form-field"><label>Address:</label><div class="line"></div></div>
-          <div class="form-field"><label>City:</label><div class="line"></div></div>
-          <div class="form-field"><label>Country:</label><div class="line"></div></div>
-          <div class="form-field"><label>Phone:</label><div class="line"></div></div>
-          <div class="form-field"><label>Email:</label><div class="line"></div></div>
-        </div>
-        
-        <div class="form-section">
-          <h3>Banking Information</h3>
-          <div class="form-field"><label>Account Type:</label><div class="line"></div></div>
-          <div class="form-field"><label>Initial Deposit:</label><div class="line"></div></div>
-          <div class="form-field"><label>Source of Funds:</label><div class="line"></div></div>
-        </div>
-        
-        <div class="signature-section">
-          <h3>Declarations and Signatures</h3>
-          <p>I hereby declare that the information provided is true and accurate.</p>
-          <div style="display: flex; justify-content: space-between; margin-top: 40px;">
-            <div>
-              <div class="signature-line"></div>
-              <p>Applicant Signature</p>
-            </div>
-            <div>
-              <div class="signature-line"></div>
-              <p>Date</p>
-            </div>
-          </div>
-        </div>
-        
-        <div style="margin-top: 50px; font-size: 12px; color: #666;">
-          <p>For Bank Use Only:</p>
-          <div class="form-field"><label>Account Number:</label><div class="line"></div></div>
-          <div class="form-field"><label>Processed by:</label><div class="line"></div></div>
-          <div class="form-field"><label>Date Processed:</label><div class="line"></div></div>
-        </div>
-      </body>
-      </html>
-    `;
-    
-    printWindow.document.write(printContent);
-    printWindow.document.close();
-    printWindow.focus();
-    printWindow.print();
-    printWindow.close();
+    // Open the authentic PDF form in a new window for printing
+    window.open(pdfUrl, '_blank');
   };
 
   const saveProgress = () => {
@@ -401,7 +323,7 @@ const AlhambraBankApp = () => {
   ];
 
   const getCurrentSteps = () => {
-    return accountType === 'individual' ? individualSteps : corporateSteps;
+    return accountType === 'individual' ? individualFormFields : corporateFormFields;
   };
 
   const validateCurrentStep = () => {
