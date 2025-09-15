@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { individualFormFields, corporateFormFields, formSubmissionInstructions } from './formFields.js';
+import IBOSSPortfolioTracker from './components/IBOSSPortfolioTracker.jsx';
 
 const AlhambraBankApp = () => {
   // Core state management
@@ -71,6 +72,7 @@ const AlhambraBankApp = () => {
       blog: "Blog",
       contact: "Contact",
       customerLogin: "Customer Login",
+      portfolioTracker: "Portfolio Tracker",
       scheduleCall: "Schedule a Call"
     },
     es: {
@@ -89,6 +91,7 @@ const AlhambraBankApp = () => {
       blog: "Blog",
       contact: "Contacto",
       customerLogin: "Acceso Cliente",
+      portfolioTracker: "Rastreador de Cartera",
       scheduleCall: "Programar Llamada"
     },
     ar: {
@@ -107,6 +110,7 @@ const AlhambraBankApp = () => {
       blog: "المدونة",
       contact: "اتصل",
       customerLogin: "دخول العميل",
+      portfolioTracker: "متتبع المحفظة",
       scheduleCall: "جدولة مكالمة"
     },
     zh: {
@@ -125,6 +129,7 @@ const AlhambraBankApp = () => {
       blog: "博客",
       contact: "联系",
       customerLogin: "客户登录",
+      portfolioTracker: "投资组合跟踪器",
       scheduleCall: "预约通话"
     }
   };
@@ -1272,6 +1277,7 @@ const AlhambraBankApp = () => {
       case 'trading': return renderTrading();
       case 'marketInsights': return renderMarketInsights();
       case 'aiServices': return renderAIServices();
+      case 'portfolioTracker': return <IBOSSPortfolioTracker />;
       case 'blog': return renderBlog();
       case 'contact': return renderContact();
       default: return renderHome();
@@ -1286,6 +1292,7 @@ const AlhambraBankApp = () => {
     { id: 'trading', label: t.trading },
     { id: 'marketInsights', label: t.marketInsights },
     { id: 'aiServices', label: t.aiServices },
+    { id: 'portfolioTracker', label: t.portfolioTracker },
     { id: 'blog', label: t.blog },
     { id: 'contact', label: t.contact }
   ];
