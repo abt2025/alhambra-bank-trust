@@ -807,9 +807,8 @@ const AlhambraBankApp = () => {
                 {t.tagline2}
               </h2>
               <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                Experience the pinnacle of private banking excellence in the Cayman Islands. 
-                Our heritage of trust, combined with cutting-edge financial solutions, 
-                ensures your wealth is managed with the utmost care and sophistication.
+                Our mission is to build a borderless financial system that guarantees sovereignty, 
+                fosters inclusion, and protects and empowers every wealth journey.
               </p>
               
               {/* Call-to-Action Buttons */}
