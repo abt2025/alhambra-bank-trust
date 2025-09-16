@@ -251,7 +251,7 @@ const AlhambraBankApp = () => {
         </head>
         <body>
           <div class="header">
-            <img src="/alhambra-bank-logo.png" alt="Alhambra Bank & Trust Limited" class="logo" />
+            <img src="/alhambra-bank-logo.png?v=${Date.now()}" alt="Alhambra Bank & Trust Limited" class="logo" />
             <h1 style="color: #D12727; margin: 10px 0;">Alhambra Bank & Trust Limited</h1>
             <div class="bank-info">
               <p>Governors Square, 23 Lime Tree Bay Ave</p>
@@ -1626,11 +1626,11 @@ const AlhambraBankApp = () => {
           <div className="flex items-center justify-between py-4">
                     <div className="flex items-center space-x-4">
             <img 
-              src="/alhambra-bank-logo.png" 
+              src={`/alhambra-bank-logo.png?v=${Date.now()}`}
               alt="Alhambra Bank & Trust Limited" 
               className="h-16 w-auto"
               onError={(e) => {
-                e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjgwIiB2aWV3Qm94PSIwIDAgMjAwIDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjRDEyNzI3Ii8+Cjx0ZXh0IHg9IjEwMCIgeT0iNDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIwLjNlbSI+QWxoYW1icmEgQmFuazwvdGV4dD4KPC9zdmc+';
+                e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDMwMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMTIwIiBmaWxsPSIjOEIxNTM4Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iNjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI0ZGRDcwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9IjAuM2VtIj5BbGhhbWJyYSBCYW5rICZhbXA7IFRydXN0PC90ZXh0Pgo8L3N2Zz4K';
               }}
             />
             <div>
