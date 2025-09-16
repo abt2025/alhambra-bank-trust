@@ -231,12 +231,94 @@ const AlhambraBankApp = () => {
     }
   };
 
-  const t = translations[language];
-
-  // IBOSS Portfolio Tracker Component
+  const t = translations[language];  // IBOSS Portfolio Tracker Component
   const IBOSSPortfolioTracker = () => {
+    const generateStatement = (type) => {
+      const statementHTML = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Alhambra Bank & Trust - Customer Statement</title>
+          <style>
+            body { font-family: Arial, sans-serif; margin: 20px; }
+            .header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #D12727; padding-bottom: 20px; }
+            .logo { max-height: 80px; margin-bottom: 10px; }
+            .bank-info { color: #666; margin-bottom: 10px; }
+            .statement-content { margin: 20px 0; }
+            .portfolio-summary { background: #f9f9f9; padding: 15px; border-radius: 8px; margin: 20px 0; }
+            .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ccc; font-size: 12px; color: #666; }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <img src="/alhambra-bank-logo.png" alt="Alhambra Bank & Trust Limited" class="logo" />
+            <h1 style="color: #D12727; margin: 10px 0;">Alhambra Bank & Trust Limited</h1>
+            <div class="bank-info">
+              <p>Governors Square, 23 Lime Tree Bay Ave</p>
+              <p>Grand Cayman KY1-1205, Cayman Islands</p>
+              <p>Licensed by CIMA | Regulated Financial Institution</p>
+            </div>
+          </div>
+          
+          <div class="statement-content">
+            <h2>Portfolio Statement</h2>
+            <p><strong>Statement Date:</strong> ${new Date().toLocaleDateString()}</p>
+            <p><strong>Account Holder:</strong> Demo Customer</p>
+            
+            <div class="portfolio-summary">
+              <h3>Portfolio Summary</h3>
+              <p><strong>Total Equity:</strong> $125,750.50</p>
+              <p><strong>Day P&L:</strong> +$2,150.25 (+1.74%)</p>
+              <p><strong>Cash Balance:</strong> $15,250.75</p>
+              <p><strong>Buying Power:</strong> $45,000</p>
+            </div>
+            
+            <h3>Holdings</h3>
+            <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+              <tr style="background: #f0f0f0;">
+                <th style="border: 1px solid #ddd; padding: 8px;">Symbol</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">Shares</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">Market Value</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">P&L</th>
+              </tr>
+              <tr><td style="border: 1px solid #ddd; padding: 8px;">AAPL</td><td style="border: 1px solid #ddd; padding: 8px;">150</td><td style="border: 1px solid #ddd; padding: 8px;">$26,325</td><td style="border: 1px solid #ddd; padding: 8px; color: green;">+4.98%</td></tr>
+              <tr><td style="border: 1px solid #ddd; padding: 8px;">GOOGL</td><td style="border: 1px solid #ddd; padding: 8px;">75</td><td style="border: 1px solid #ddd; padding: 8px;">$10,672.50</td><td style="border: 1px solid #ddd; padding: 8px; color: red;">-2.95%</td></tr>
+              <tr><td style="border: 1px solid #ddd; padding: 8px;">MSFT</td><td style="border: 1px solid #ddd; padding: 8px;">200</td><td style="border: 1px solid #ddd; padding: 8px;">$75,770</td><td style="border: 1px solid #ddd; padding: 8px; color: green;">+2.92%</td></tr>
+              <tr><td style="border: 1px solid #ddd; padding: 8px;">TSLA</td><td style="border: 1px solid #ddd; padding: 8px;">50</td><td style="border: 1px solid #ddd; padding: 8px;">$12,437.50</td><td style="border: 1px solid #ddd; padding: 8px; color: red;">-3.76%</td></tr>
+            </table>
+          </div>
+          
+          <div class="footer">
+            <p><strong>Important Notice:</strong> This statement is confidential and intended solely for the named account holder.</p>
+            <p>© 2025 Alhambra Bank & Trust Limited. All Rights Reserved. Licensed by CIMA.</p>
+          </div>
+        </body>
+        </html>
+      `;
+      
+      if (type === 'print') {
+        const printWindow = window.open('', '_blank');
+        printWindow.document.write(statementHTML);
+        printWindow.document.close();
+        printWindow.print();
+      } else if (type === 'download') {
+        const blob = new Blob([statementHTML], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'alhambra-bank-statement.html';
+        a.click();
+        URL.revokeObjectURL(url);
+      } else if (type === 'share') {
+        navigator.clipboard.writeText(window.location.origin + '/statement-preview');
+        alert('Secure sharing link copied to clipboard!');
+      } else if (type === 'email') {
+        alert('Statement will be sent to your registered email address.');
+      }
+    };
+
     const handleLogin = () => {
-      // Simulate authentication
+      // Simulate authentication with dual credentials
       if (bankCredentials.username && bankCredentials.password && 
           ibossCredentials.username && ibossCredentials.password) {
         setIsLoggedIn(true);
@@ -497,13 +579,14 @@ const AlhambraBankApp = () => {
                       <h4 className="font-medium mb-4">🚀 Export Options</h4>
                       <div className="space-y-3">
                         {[
-                          { name: 'Print Statement', icon: '🖨️' },
-                          { name: 'Download HTML', icon: '💾' },
-                          { name: 'Share Securely', icon: '🔗' },
-                          { name: 'Email Statement', icon: '📧' }
+                          { name: 'Print Statement', icon: '🖨️', action: () => generateStatement('print') },
+                          { name: 'Download HTML', icon: '💾', action: () => generateStatement('download') },
+                          { name: 'Share Securely', icon: '🔗', action: () => generateStatement('share') },
+                          { name: 'Email Statement', icon: '📧', action: () => generateStatement('email') }
                         ].map((option, index) => (
                           <button
                             key={index}
+                            onClick={option.action}
                             className="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
                           >
                             <span className="mr-2">{option.icon}</span>
@@ -772,25 +855,9 @@ const AlhambraBankApp = () => {
         </div>
       );
     }
-    
-    return (
-      <div className="space-y-4">
-        <h3 className="text-xl font-bold text-red-700">
-          Step {currentStep}: {currentStepFields[0]?.step_title || 'Form Details'}
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {currentStepFields.map((field, index) => (
-            <div key={index} className={field.type === 'textarea' ? 'md:col-span-2' : ''}>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                {field.label} {field.required && <span className="text-red-500">*</span>}
-              </label>
-              {renderFormField(field)}
-            </div>
-          ))}
-        </div>
-      </div>
-    );
   };
+
+
 
   // Page rendering functions
   const renderHome = () => (
@@ -958,6 +1025,43 @@ const AlhambraBankApp = () => {
                 Ali Al-Sari founded Alhambra Bank & Trust to provide unparalleled private banking 
                 services in the Cayman Islands.
               </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Founder's Message */}
+        <div className="py-16 bg-white">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-red-700 text-center mb-8">Message from Our Founder</h2>
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              <div className="md:w-1/3">
+                <img 
+                  src="/images/founder_ali_alsari.webp" 
+                  alt="Ali Alsari - Non-Executive Board Director" 
+                  className="w-full max-w-xs mx-auto rounded-lg shadow-lg border-2 border-red-200"
+                  onError={(e) => {
+                    e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI0MCIgdmlld0JveD0iMCAwIDIwMCAyNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjQwIiBmaWxsPSIjRjNGNEY2Ii8+CjxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSIzMCIgZmlsbD0iIzlCOUJBMyIvPgo8cGF0aCBkPSJNNTAgMTgwQzUwIDE1MCA3MyAxMjAgMTAwIDEyMEMxMjcgMTIwIDE1MCAxNTAgMTUwIDE4MEgxNTBWMjQwSDUwVjE4MFoiIGZpbGw9IiM5QjlCQTMiLz4KPC9zdmc+';
+                  }}
+                />
+              </div>
+              <div className="md:w-2/3">
+                <div className="bg-gray-50 p-6 rounded-lg border-l-4 border-red-500">
+                  <p className="text-gray-700 leading-relaxed mb-6">
+                    The decision to start Alhambra Bank was rooted in a fundamental belief that everyone deserves to be treated with dignity, respect, and fairness, regardless of their skin color, religion, sexual orientation, or any other defining trait. Traditional banking systems have often been criticized for perpetuating inequality, whether through discriminatory practices, restricted access for underserved groups, lack of access for marginalized communities, or biases in decision-making.
+                  </p>
+                  <p className="text-gray-700 leading-relaxed mb-6">
+                    Alhambra Bank was established to disrupt these conventions and forge a financial institution that genuinely serves everyone on equal terms. Our mission is to create a secure, inclusive, and empowering environment where both individuals and businesses can flourish without the threat of discrimination or exclusion.
+                  </p>
+                  <blockquote className="border-l-4 border-red-500 pl-4 italic text-gray-700 mb-6">
+                    "Alhambra Bank is more than just a bank—it's a movement toward a world where financial institutions reflect the values of fairness, equality, and respect for all. We are here to redefine what it means to be a bank, one that prioritizes people over profit and inclusion over exclusion."
+                  </blockquote>
+                  <div className="text-right">
+                    <p className="font-semibold text-red-700">Ali Alsari</p>
+                    <p className="text-gray-600">Non-Executive Board Director</p>
+                    <p className="text-gray-600">Alhambra Bank</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1539,16 +1643,20 @@ const AlhambraBankApp = () => {
       <header className="fixed top-0 left-0 right-0 bg-white shadow-md z-40">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-4">
-            {/* Logo */}
-            <div className="flex items-center">
-              <img src="/alhambra-logo.png" alt="Alhambra Bank & Trust" className="h-10 mr-3" />
-              <div>
-                <h1 className="text-xl font-bold text-red-700">{t.title}</h1>
-                <p className="text-xs text-red-600">Excellence in Corporate Banking</p>
-              </div>
+                    <div className="flex items-center space-x-4">
+            <img 
+              src="/alhambra-bank-logo.png" 
+              alt="Alhambra Bank & Trust Limited" 
+              className="h-16 w-auto"
+              onError={(e) => {
+                e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjgwIiB2aWV3Qm94PSIwIDAgMjAwIDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjRDEyNzI3Ii8+Cjx0ZXh0IHg9IjEwMCIgeT0iNDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIwLjNlbSI+QWxoYW1icmEgQmFuazwvdGV4dD4KPC9zdmc+';
+              }}
+            />
+            <div>
+              <h1 className="text-xl font-bold text-red-700">{t.title}</h1>
+              <p className="text-sm text-red-600">Licensed by CIMA</p>
             </div>
-
-            {/* Language Selector */}
+          </div>* Language Selector */}
             <div className="flex items-center space-x-4">
               <select
                 value={language}
