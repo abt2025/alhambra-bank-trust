@@ -68,6 +68,212 @@ const AccountOpeningWorkflow = ({ language = 'en', accountType = 'individual', o
 
   const t = translations[language] || translations.en;
 
+  const generatePrintableForm = (formType) => {
+    const formHTML = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Alhambra Bank & Trust - ${formType} Application Form</title>
+        <style>
+          body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+          .header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #D12727; padding-bottom: 20px; }
+          .logo { max-height: 80px; margin-bottom: 10px; }
+          .bank-info { color: #666; margin-bottom: 10px; }
+          .form-section { margin: 20px 0; page-break-inside: avoid; }
+          .form-title { color: #D12727; font-size: 18px; font-weight: bold; margin-bottom: 15px; border-bottom: 1px solid #D12727; padding-bottom: 5px; }
+          .form-field { margin: 15px 0; display: flex; align-items: center; }
+          .form-label { width: 200px; font-weight: bold; }
+          .form-input { border-bottom: 1px solid #333; min-width: 300px; height: 20px; margin-left: 10px; }
+          .checkbox-field { margin: 10px 0; }
+          .signature-section { margin-top: 40px; }
+          .signature-line { border-bottom: 1px solid #333; width: 300px; height: 30px; margin: 20px 0; }
+          .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ccc; font-size: 12px; color: #666; }
+          @media print { body { margin: 0; } .no-print { display: none; } }
+        </style>
+      </head>
+      <body>
+        <div class="header">
+          <img src="/alhambra-bank-logo.png" alt="Alhambra Bank & Trust Limited" class="logo" />
+          <h1 style="color: #D12727; margin: 10px 0;">Alhambra Bank & Trust Limited</h1>
+          <div class="bank-info">
+            <p>Governors Square, 23 Lime Tree Bay Ave</p>
+            <p>Grand Cayman KY1-1205, Cayman Islands</p>
+            <p>Licensed by CIMA | Regulated Financial Institution</p>
+          </div>
+          <h2>${formType} Account Application Form</h2>
+        </div>
+        
+        <div class="form-section">
+          <div class="form-title">Personal Information</div>
+          <div class="form-field">
+            <span class="form-label">Full Legal Name:</span>
+            <div class="form-input"></div>
+          </div>
+          <div class="form-field">
+            <span class="form-label">Date of Birth:</span>
+            <div class="form-input"></div>
+          </div>
+          <div class="form-field">
+            <span class="form-label">Nationality:</span>
+            <div class="form-input"></div>
+          </div>
+          <div class="form-field">
+            <span class="form-label">Passport Number:</span>
+            <div class="form-input"></div>
+          </div>
+          <div class="form-field">
+            <span class="form-label">Phone Number:</span>
+            <div class="form-input"></div>
+          </div>
+          <div class="form-field">
+            <span class="form-label">Email Address:</span>
+            <div class="form-input"></div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-title">Address Information</div>
+          <div class="form-field">
+            <span class="form-label">Residential Address:</span>
+            <div class="form-input"></div>
+          </div>
+          <div class="form-field">
+            <span class="form-label">City:</span>
+            <div class="form-input"></div>
+          </div>
+          <div class="form-field">
+            <span class="form-label">Country:</span>
+            <div class="form-input"></div>
+          </div>
+          <div class="form-field">
+            <span class="form-label">Postal Code:</span>
+            <div class="form-input"></div>
+          </div>
+        </div>
+
+        ${formType === 'Individual' ? `
+        <div class="form-section">
+          <div class="form-title">Employment Information</div>
+          <div class="form-field">
+            <span class="form-label">Occupation:</span>
+            <div class="form-input"></div>
+          </div>
+          <div class="form-field">
+            <span class="form-label">Employer Name:</span>
+            <div class="form-input"></div>
+          </div>
+          <div class="form-field">
+            <span class="form-label">Annual Income:</span>
+            <div class="form-input"></div>
+          </div>
+          <div class="form-field">
+            <span class="form-label">Source of Funds:</span>
+            <div class="form-input"></div>
+          </div>
+        </div>
+        ` : `
+        <div class="form-section">
+          <div class="form-title">Corporate Information</div>
+          <div class="form-field">
+            <span class="form-label">Company Name:</span>
+            <div class="form-input"></div>
+          </div>
+          <div class="form-field">
+            <span class="form-label">Registration Number:</span>
+            <div class="form-input"></div>
+          </div>
+          <div class="form-field">
+            <span class="form-label">Business Activity:</span>
+            <div class="form-input"></div>
+          </div>
+          <div class="form-field">
+            <span class="form-label">Annual Turnover:</span>
+            <div class="form-input"></div>
+          </div>
+        </div>
+        `}
+
+        <div class="form-section">
+          <div class="form-title">Banking Services Required</div>
+          <div class="checkbox-field">
+            <input type="checkbox"> Current Account
+          </div>
+          <div class="checkbox-field">
+            <input type="checkbox"> Savings Account
+          </div>
+          <div class="checkbox-field">
+            <input type="checkbox"> Investment Services
+          </div>
+          <div class="checkbox-field">
+            <input type="checkbox"> Private Banking
+          </div>
+          <div class="checkbox-field">
+            <input type="checkbox"> Foreign Exchange
+          </div>
+          <div class="checkbox-field">
+            <input type="checkbox"> Trade Finance
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-title">Declarations</div>
+          <div class="checkbox-field">
+            <input type="checkbox"> I confirm that all information provided is true and accurate
+          </div>
+          <div class="checkbox-field">
+            <input type="checkbox"> I agree to Alhambra Bank & Trust's Terms and Conditions
+          </div>
+          <div class="checkbox-field">
+            <input type="checkbox"> I consent to credit and background checks
+          </div>
+          <div class="checkbox-field">
+            <input type="checkbox"> I agree to comply with FATCA and CRS reporting requirements
+          </div>
+        </div>
+
+        <div class="signature-section">
+          <div class="form-title">Signatures</div>
+          <div style="display: flex; justify-content: space-between; margin-top: 30px;">
+            <div>
+              <div class="signature-line"></div>
+              <p>Applicant Signature</p>
+            </div>
+            <div>
+              <div class="signature-line"></div>
+              <p>Date</p>
+            </div>
+          </div>
+          ${formType === 'Corporate' ? `
+          <div style="display: flex; justify-content: space-between; margin-top: 30px;">
+            <div>
+              <div class="signature-line"></div>
+              <p>Authorized Signatory</p>
+            </div>
+            <div>
+              <div class="signature-line"></div>
+              <p>Company Seal</p>
+            </div>
+          </div>
+          ` : ''}
+        </div>
+        
+        <div class="footer">
+          <p><strong>For Bank Use Only:</strong></p>
+          <p>Application Received: ________________ Reference Number: ________________</p>
+          <p>Processed By: ________________ Date: ________________</p>
+          <br>
+          <p>© 2025 Alhambra Bank & Trust Limited. All Rights Reserved. Licensed by CIMA.</p>
+        </div>
+      </body>
+      </html>
+    `;
+    
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(formHTML);
+    printWindow.document.close();
+    printWindow.print();
+  };
+
   const workflowSteps = [
     {
       id: 1,
@@ -261,6 +467,62 @@ const AccountOpeningWorkflow = ({ language = 'en', accountType = 'individual', o
           <span className="mr-2">📞</span>
           {t.scheduleCall}
         </button>
+      </div>
+
+      {/* Printable Forms Section */}
+      <div className="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-lg mb-8">
+        <div className="flex items-center mb-4">
+          <span className="text-2xl mr-2">🖨️</span>
+          <h4 className="font-bold text-blue-800">
+            {language === 'en' ? 'Printable Application Forms' : 
+             language === 'es' ? 'Formularios de Aplicación Imprimibles' : 
+             language === 'ar' ? 'نماذج التطبيق القابلة للطباعة' : 
+             '可打印申请表格'}
+          </h4>
+        </div>
+        <p className="text-blue-700 mb-4">
+          {language === 'en' ? 'Download and print our application forms to complete offline and submit in person or by mail.' :
+           language === 'es' ? 'Descarga e imprime nuestros formularios de solicitud para completar sin conexión y enviar en persona o por correo.' :
+           language === 'ar' ? 'قم بتنزيل وطباعة نماذج الطلب الخاصة بنا لإكمالها دون اتصال وتقديمها شخصياً أو بالبريد.' :
+           '下载并打印我们的申请表格，以便离线完成并亲自或通过邮件提交。'}
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <button 
+            onClick={() => generatePrintableForm('Individual')}
+            className="flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            <span className="mr-2">👤</span>
+            {language === 'en' ? 'Print Individual Account Form' :
+             language === 'es' ? 'Imprimir Formulario de Cuenta Individual' :
+             language === 'ar' ? 'طباعة نموذج الحساب الفردي' :
+             '打印个人账户表格'}
+          </button>
+          
+          <button 
+            onClick={() => generatePrintableForm('Corporate')}
+            className="flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            <span className="mr-2">🏢</span>
+            {language === 'en' ? 'Print Corporate Account Form' :
+             language === 'es' ? 'Imprimir Formulario de Cuenta Corporativa' :
+             language === 'ar' ? 'طباعة نموذج الحساب المؤسسي' :
+             '打印企业账户表格'}
+          </button>
+        </div>
+        <div className="mt-4 text-sm text-blue-600">
+          <p>
+            <strong>
+              {language === 'en' ? 'Note:' :
+               language === 'es' ? 'Nota:' :
+               language === 'ar' ? 'ملاحظة:' :
+               '注意：'}
+            </strong> 
+            {language === 'en' ? ' Forms include all required fields, signature lines, and bank processing sections. Please complete all sections before submission.' :
+             language === 'es' ? ' Los formularios incluyen todos los campos requeridos, líneas de firma y secciones de procesamiento bancario. Complete todas las secciones antes de enviar.' :
+             language === 'ar' ? ' تتضمن النماذج جميع الحقول المطلوبة وخطوط التوقيع وأقسام المعالجة المصرفية. يرجى إكمال جميع الأقسام قبل التقديم.' :
+             ' 表格包含所有必填字段、签名行和银行处理部分。请在提交前完成所有部分。'}
+          </p>
+        </div>
       </div>
 
       {/* Help Section */}
