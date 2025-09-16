@@ -866,11 +866,23 @@ const AlhambraBankApp = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-center lg:text-left">
-              <h1 className="text-5xl font-bold text-red-700 mb-4">
-                {t.tagline1}
+              <h1 className="text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
+                <span className="bg-gradient-to-r from-red-600 via-red-700 to-red-800 bg-clip-text text-transparent drop-shadow-lg">
+                  MANAGING YOUR
+                </span>
+                <br />
+                <span className="bg-gradient-to-r from-amber-500 via-yellow-600 to-amber-700 bg-clip-text text-transparent drop-shadow-lg">
+                  WEALTH
+                </span>
               </h1>
-              <h2 className="text-3xl font-semibold text-red-600 mb-6">
-                {t.tagline2}
+              <h2 className="text-4xl lg:text-5xl font-bold mb-8 leading-tight">
+                <span className="text-red-700 drop-shadow-md tracking-wide">
+                  PROTECTING YOUR
+                </span>
+                <br />
+                <span className="bg-gradient-to-r from-red-800 via-red-900 to-red-800 bg-clip-text text-transparent font-serif italic">
+                  LEGACY
+                </span>
               </h2>
               <p className="text-xl text-gray-700 mb-8 leading-relaxed">
                 Our mission is to build a borderless financial system that guarantees sovereignty, 
