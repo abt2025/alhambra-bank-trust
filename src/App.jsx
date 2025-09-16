@@ -914,8 +914,7 @@ const AlhambraBankApp = () => {
         </div>
       </div>
 
-      {/* Communication Channels */}
-      <CommunicationChannels />
+      {/* Communication Channels - Moved to footer */}
 
       {/* Features Section */}
       <div className="py-16 bg-gray-50">
@@ -1505,27 +1504,7 @@ const AlhambraBankApp = () => {
               ))}
             </div>
 
-            {/* Social Media Links */}
-            <div className="mt-8">
-              <h3 className="text-xl font-bold text-red-700 mb-4">Connect With Us</h3>
-              <div className="grid grid-cols-3 gap-4">
-                {[
-                  { name: t.whatsapp, icon: '💬', color: 'bg-green-500' },
-                  { name: t.telegram, icon: '✈️', color: 'bg-blue-500' },
-                  { name: t.facebook, icon: '📘', color: 'bg-blue-600' },
-                  { name: t.twitter, icon: '🐦', color: 'bg-blue-400' },
-                  { name: t.instagram, icon: '📷', color: 'bg-pink-500' },
-                  { name: t.linkedin, icon: '💼', color: 'bg-blue-700' }
-                ].map((social, index) => (
-                  <div key={index} className="text-center">
-                    <div className={`w-12 h-12 ${social.color} text-white rounded-lg flex items-center justify-center mx-auto mb-2 hover:scale-110 transition-transform cursor-pointer`}>
-                      <span className="text-xl">{social.icon}</span>
-                    </div>
-                    <p className="text-xs text-gray-600">{social.name}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+            {/* Social Media Links - Moved to bottom of page */}
           </div>
 
           {/* Contact Form */}
@@ -1774,6 +1753,41 @@ const AlhambraBankApp = () => {
       {/* Main Content */}
       <div className="pt-20 bg-white min-h-screen">
         {renderContent()}
+      </div>
+
+      {/* Social Media Section - Bottom of Page */}
+      <div className="bg-red-50 py-12">
+        <div className="container mx-auto px-4">
+          <h3 className="text-3xl font-bold text-red-700 text-center mb-8">Connect With Us</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 max-w-4xl mx-auto">
+            {[
+              { name: t.whatsapp, icon: '💬', color: 'bg-green-500', link: 'https://wa.me/13451234567' },
+              { name: t.telegram, icon: '✈️', color: 'bg-blue-500', link: 'https://t.me/alhambrabank' },
+              { name: 'Facebook', icon: '📘', color: 'bg-blue-600', link: 'https://facebook.com/alhambrabank' },
+              { name: 'Twitter', icon: '🐦', color: 'bg-blue-400', link: 'https://twitter.com/alhambrabank' },
+              { name: 'Instagram', icon: '📷', color: 'bg-pink-500', link: 'https://instagram.com/alhambrabank' },
+              { name: 'LinkedIn', icon: '💼', color: 'bg-blue-700', link: 'https://linkedin.com/company/alhambrabank' },
+              { name: 'YouTube', icon: '📺', color: 'bg-red-600', link: 'https://youtube.com/alhambrabank' },
+              { name: t.livechat, icon: '💭', color: 'bg-purple-500', link: '#' },
+              { name: t.videocall, icon: '📹', color: 'bg-indigo-500', link: '#' },
+              { name: t.phonecall, icon: '📞', color: 'bg-green-600', link: 'tel:+13451234567' },
+              { name: t.email, icon: '📧', color: 'bg-gray-600', link: 'mailto:info@alhambrabank.ky' }
+            ].map((channel, index) => (
+              <a 
+                key={index} 
+                href={channel.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-center group"
+              >
+                <div className={`w-16 h-16 ${channel.color} text-white rounded-full flex items-center justify-center mx-auto mb-2 hover:scale-110 transition-transform cursor-pointer group-hover:shadow-lg`}>
+                  <span className="text-2xl">{channel.icon}</span>
+                </div>
+                <p className="text-sm text-gray-700 font-medium group-hover:text-red-700 transition-colors">{channel.name}</p>
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Footer */}
