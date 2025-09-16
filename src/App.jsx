@@ -1637,7 +1637,8 @@ const AlhambraBankApp = () => {
               <h1 className="text-xl font-bold text-red-700">{t.title}</h1>
               <p className="text-sm text-red-600">Licensed by CIMA</p>
             </div>
-          </div>* Language Selector */}
+          </div>
+          {/* Language Selector */}
             <div className="flex items-center space-x-4">
               <select
                 value={language}
