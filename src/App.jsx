@@ -421,21 +421,76 @@ const AlhambraBankApp = () => {
             <div className="p-6">
               {portfolioTab === 'overview' && (
                 <div className="space-y-6">
+                  {/* Action Buttons */}
+                  <div className="flex flex-wrap gap-4 mb-6">
+                    <button className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors flex items-center">
+                      🖨️ Print Portfolio
+                    </button>
+                    <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center">
+                      💾 Download PDF
+                    </button>
+                    <button className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center">
+                      🔗 Share Portfolio
+                    </button>
+                    <button className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors flex items-center">
+                      📧 Email Statement
+                    </button>
+                  </div>
+
+                  {/* Performance Chart */}
+                  <div className="bg-white p-6 rounded-lg border">
+                    <h3 className="text-lg font-semibold mb-4">📊 Portfolio Performance Chart</h3>
+                    <div className="h-64 bg-gradient-to-r from-red-50 to-red-100 rounded-lg flex items-center justify-center relative overflow-hidden">
+                      {/* Simulated Chart */}
+                      <svg className="w-full h-full" viewBox="0 0 400 200">
+                        <defs>
+                          <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stopColor="#dc2626" stopOpacity="0.3"/>
+                            <stop offset="100%" stopColor="#dc2626" stopOpacity="0.1"/>
+                          </linearGradient>
+                        </defs>
+                        {/* Chart line */}
+                        <polyline
+                          fill="none"
+                          stroke="#dc2626"
+                          strokeWidth="3"
+                          points="20,150 60,140 100,120 140,110 180,100 220,90 260,85 300,80 340,75 380,70"
+                        />
+                        {/* Chart area */}
+                        <polygon
+                          fill="url(#chartGradient)"
+                          points="20,150 60,140 100,120 140,110 180,100 220,90 260,85 300,80 340,75 380,70 380,180 20,180"
+                        />
+                        {/* Data points */}
+                        {[20,60,100,140,180,220,260,300,340,380].map((x, i) => (
+                          <circle key={i} cx={x} cy={150-i*8} r="4" fill="#dc2626" className="animate-pulse"/>
+                        ))}
+                      </svg>
+                      <div className="absolute top-4 right-4 text-sm text-gray-600">
+                        📈 +15.8% YTD
+                      </div>
+                    </div>
+                  </div>
+
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
                       <h3 className="text-lg font-semibold mb-4">📈 Performance Overview</h3>
                       <div className="space-y-3">
                         {[
-                          { period: 'Daily', value: '+1.74%', color: 'text-green-600' },
-                          { period: 'Monthly', value: '+5.2%', color: 'text-green-600' },
-                          { period: 'Quarterly', value: '+8.7%', color: 'text-green-600' },
-                          { period: 'Yearly', value: '+15.8%', color: 'text-green-600' },
-                          { period: 'Three Year', value: '+42.5%', color: 'text-green-600' },
-                          { period: 'Five Year', value: '+85.2%', color: 'text-green-600' }
+                          { period: 'Daily', value: '+1.74%', amount: '+$2,150.25', color: 'text-green-600' },
+                          { period: 'Weekly', value: '+3.8%', amount: '+$4,725.50', color: 'text-green-600' },
+                          { period: 'Monthly', value: '+5.2%', amount: '+$6,425.75', color: 'text-green-600' },
+                          { period: 'Quarterly', value: '+8.7%', amount: '+$10,875.25', color: 'text-green-600' },
+                          { period: 'Yearly', value: '+15.8%', amount: '+$19,650.50', color: 'text-green-600' },
+                          { period: 'Three Year', value: '+42.5%', amount: '+$52,875.75', color: 'text-green-600' },
+                          { period: 'Five Year', value: '+85.2%', amount: '+$106,250.25', color: 'text-green-600' }
                         ].map((item, index) => (
-                          <div key={index} className="flex justify-between items-center py-2">
-                            <span className="text-gray-600">{item.period}</span>
-                            <span className={`font-semibold ${item.color}`}>{item.value} ↗️</span>
+                          <div key={index} className="flex justify-between items-center py-2 border-b border-gray-100">
+                            <span className="text-gray-600 font-medium">{item.period}</span>
+                            <div className="text-right">
+                              <div className={`font-semibold ${item.color}`}>{item.value} ↗️</div>
+                              <div className="text-sm text-gray-500">{item.amount}</div>
+                            </div>
                           </div>
                         ))}
                       </div>
@@ -562,21 +617,32 @@ const AlhambraBankApp = () => {
     <div className="bg-red-50 py-8">
       <div className="container mx-auto px-4">
         <h3 className="text-2xl font-bold text-red-700 text-center mb-8">Connect With Us</h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
           {[
-            { name: t.whatsapp, icon: '💬', color: 'bg-green-500' },
-            { name: t.telegram, icon: '✈️', color: 'bg-blue-500' },
-            { name: t.livechat, icon: '💭', color: 'bg-purple-500' },
-            { name: t.videocall, icon: '📹', color: 'bg-indigo-500' },
-            { name: t.phonecall, icon: '📞', color: 'bg-green-600' },
-            { name: t.email, icon: '📧', color: 'bg-gray-600' }
+            { name: t.whatsapp, icon: '💬', color: 'bg-green-500', link: 'https://wa.me/13451234567' },
+            { name: t.telegram, icon: '✈️', color: 'bg-blue-500', link: 'https://t.me/alhambrabank' },
+            { name: 'Facebook', icon: '📘', color: 'bg-blue-600', link: 'https://facebook.com/alhambrabank' },
+            { name: 'Twitter', icon: '🐦', color: 'bg-blue-400', link: 'https://twitter.com/alhambrabank' },
+            { name: 'Instagram', icon: '📷', color: 'bg-pink-500', link: 'https://instagram.com/alhambrabank' },
+            { name: 'LinkedIn', icon: '💼', color: 'bg-blue-700', link: 'https://linkedin.com/company/alhambrabank' },
+            { name: 'YouTube', icon: '📺', color: 'bg-red-600', link: 'https://youtube.com/alhambrabank' },
+            { name: t.livechat, icon: '💭', color: 'bg-purple-500', link: '#' },
+            { name: t.videocall, icon: '📹', color: 'bg-indigo-500', link: '#' },
+            { name: t.phonecall, icon: '📞', color: 'bg-green-600', link: 'tel:+13451234567' },
+            { name: t.email, icon: '📧', color: 'bg-gray-600', link: 'mailto:info@alhambrabank.ky' }
           ].map((channel, index) => (
-            <div key={index} className="text-center">
-              <div className={`w-16 h-16 ${channel.color} text-white rounded-full flex items-center justify-center mx-auto mb-2 hover:scale-110 transition-transform cursor-pointer`}>
+            <a 
+              key={index} 
+              href={channel.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-center group"
+            >
+              <div className={`w-16 h-16 ${channel.color} text-white rounded-full flex items-center justify-center mx-auto mb-2 hover:scale-110 transition-transform cursor-pointer group-hover:shadow-lg`}>
                 <span className="text-2xl">{channel.icon}</span>
               </div>
-              <p className="text-sm text-gray-700 font-medium">{channel.name}</p>
-            </div>
+              <p className="text-sm text-gray-700 font-medium group-hover:text-red-700 transition-colors">{channel.name}</p>
+            </a>
           ))}
         </div>
       </div>
@@ -1532,8 +1598,8 @@ const AlhambraBankApp = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Social Media Bar */}
-      <SocialMediaBar />
+      {/* Social Media Bar - Moved to Contact Us section */}
+      {/* <SocialMediaBar /> */}
 
       {/* Navigation Header */}
       <header className="fixed top-0 left-0 right-0 bg-white shadow-md z-40">
