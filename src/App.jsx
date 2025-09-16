@@ -1008,26 +1008,7 @@ const AlhambraBankApp = () => {
           </div>
         </div>
 
-        {/* Leadership */}
-        <div className="text-center mb-16">
-          <h2 className="text-2xl font-bold text-red-700 mb-8">Leadership</h2>
-          <div className="max-w-md mx-auto">
-            <div className="bg-white border-2 border-red-200 rounded-lg p-6 shadow-lg">
-              <img 
-                src="/ali-alsari-founder.png" 
-                alt="Ali Al-Sari, Founder & CEO" 
-                className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
-              />
-              <h3 className="text-xl font-bold text-red-700 mb-2">Ali Al-Sari</h3>
-              <p className="text-red-600 font-semibold mb-3">Founder & Chief Executive Officer</p>
-              <p className="text-gray-700 text-sm">
-                With over 25 years of experience in international banking and wealth management, 
-                Ali Al-Sari founded Alhambra Bank & Trust to provide unparalleled private banking 
-                services in the Cayman Islands.
-              </p>
-            </div>
-          </div>
-        </div>
+
 
         {/* Founder's Message */}
         <div className="py-16 bg-white">
