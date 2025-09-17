@@ -978,6 +978,79 @@ const AlhambraBankApp = () => {
       <div className="container mx-auto px-4">
         <h1 className="text-4xl font-bold text-red-700 text-center mb-12">About Alhambra Bank & Trust</h1>
         
+        {/* Founder's Letter */}
+        <div className="max-w-4xl mx-auto mb-16">
+          <div className="bg-gradient-to-r from-red-50 to-red-100 p-8 rounded-lg border-l-4 border-red-600 mb-12">
+            <h2 className="text-3xl font-bold text-red-700 mb-6 text-center">A Letter from Our Founder</h2>
+            
+            <div className="flex flex-col lg:flex-row items-start gap-8">
+              <div className="lg:w-1/4 text-center">
+                <img 
+                  src="/ali-alsari-founder.png" 
+                  alt="Ali Al-Sari, Founder & CEO" 
+                  className="w-40 h-40 rounded-full mx-auto mb-4 object-cover border-4 border-red-200"
+                />
+                <h3 className="text-xl font-bold text-red-700 mb-1">Ali Al-Sari</h3>
+                <p className="text-red-600 font-semibold text-sm">Founder & Chief Executive Officer</p>
+                <p className="text-gray-600 text-xs mt-2">Licensed by CIMA</p>
+              </div>
+              
+              <div className="lg:w-3/4 space-y-6 text-gray-700 leading-relaxed">
+                <p className="text-lg font-medium text-red-700 italic">
+                  "Dear Valued Clients and Partners,"
+                </p>
+                
+                <p>
+                  When I founded Alhambra Bank & Trust in the prestigious Cayman Islands, I envisioned creating more than just another financial institution. I sought to establish a beacon of excellence that would honor the timeless principles of trust, integrity, and sophisticated service that have defined the world's greatest banking traditions.
+                </p>
+                
+                <p>
+                  Named after the magnificent Alhambra Palace in Granada, Spain—a masterpiece that represents the pinnacle of Islamic art, architecture, and cultural sophistication—our bank embodies these same principles of excellence, beauty, and enduring legacy. Just as the Alhambra has stood as a wonder of the world for centuries, we aspire to build lasting relationships that transcend generations.
+                </p>
+                
+                <p>
+                  With over 25 years of experience in international banking and wealth management across Europe, the Middle East, and the Caribbean, I have witnessed firsthand the evolving needs of high-net-worth individuals and institutional clients. Today's global economy demands not just traditional banking services, but innovative solutions that protect and enhance wealth while navigating an increasingly complex regulatory landscape.
+                </p>
+                
+                <p>
+                  Our strategic location in the Cayman Islands—one of the world's most respected and well-regulated financial centers—provides our clients with unparalleled access to global markets while maintaining the highest standards of financial privacy and regulatory compliance. We are fully licensed and regulated by the Cayman Islands Monetary Authority (CIMA), ensuring that every aspect of our operations meets the most stringent international standards.
+                </p>
+                
+                <p>
+                  At Alhambra Bank & Trust, we believe that true wealth management extends far beyond mere asset accumulation. It encompasses the preservation of family legacies, the facilitation of philanthropic endeavors, and the creation of sustainable financial structures that serve multiple generations. Our comprehensive suite of services—from private banking and corporate finance to trust administration and estate planning—is designed to address every aspect of our clients' financial lives.
+                </p>
+                
+                <p>
+                  What sets us apart is our unwavering commitment to personalized service. In an era of increasing digitization and automation, we maintain the human touch that discerning clients deserve. Every relationship is managed by experienced professionals who understand that your financial goals are as unique as your personal circumstances.
+                </p>
+                
+                <p>
+                  Our investment philosophy is grounded in prudent risk management, diversification, and a deep understanding of global market dynamics. We leverage cutting-edge technology and artificial intelligence to enhance our analytical capabilities while never losing sight of the fundamental principles that have guided successful wealth management for centuries.
+                </p>
+                
+                <p>
+                  As we look to the future, we remain committed to innovation while honoring tradition. We are continuously expanding our capabilities in digital banking, sustainable investing, and cross-border financial solutions to meet the evolving needs of our global clientele.
+                </p>
+                
+                <p>
+                  I invite you to experience the Alhambra difference—where centuries-old principles of excellence meet modern financial innovation, where your success becomes our legacy, and where every client relationship is built on the foundation of trust, integrity, and mutual respect.
+                </p>
+                
+                <p className="text-lg font-medium text-red-700">
+                  Welcome to Alhambra Bank & Trust, where your wealth journey begins.
+                </p>
+                
+                <div className="border-t border-red-200 pt-4 mt-6">
+                  <p className="font-semibold text-red-700">Ali Al-Sari</p>
+                  <p className="text-sm text-gray-600">Founder & Chief Executive Officer</p>
+                  <p className="text-sm text-gray-600">Alhambra Bank & Trust Limited</p>
+                  <p className="text-xs text-gray-500 mt-2">Licensed by the Cayman Islands Monetary Authority</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Heritage Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
           <div>
@@ -1018,11 +1091,11 @@ const AlhambraBankApp = () => {
           </div>
         </div>
 
-        {/* Leadership */}
-        <div className="text-center mb-16">
-          <h2 className="text-2xl font-bold text-red-700 mb-8">Leadership</h2>
-          <div className="max-w-md mx-auto">
-            <div className="bg-white border-2 border-red-200 rounded-lg p-6 shadow-lg">
+        {/* Leadership Team */}
+        <div className="mb-16">
+          <h2 className="text-2xl font-bold text-red-700 text-center mb-8">Leadership Team</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-white border-2 border-red-200 rounded-lg p-6 shadow-lg text-center">
               <img 
                 src="/ali-alsari-founder.png" 
                 alt="Ali Al-Sari, Founder & CEO" 
@@ -1031,9 +1104,29 @@ const AlhambraBankApp = () => {
               <h3 className="text-xl font-bold text-red-700 mb-2">Ali Al-Sari</h3>
               <p className="text-red-600 font-semibold mb-3">Founder & Chief Executive Officer</p>
               <p className="text-gray-700 text-sm">
-                With over 25 years of experience in international banking and wealth management, 
-                Ali Al-Sari founded Alhambra Bank & Trust to provide unparalleled private banking 
-                services in the Cayman Islands.
+                25+ years in international banking and wealth management. Former executive at leading European and Middle Eastern financial institutions.
+              </p>
+            </div>
+            
+            <div className="bg-white border-2 border-red-200 rounded-lg p-6 shadow-lg text-center">
+              <div className="w-32 h-32 rounded-full mx-auto mb-4 bg-red-100 flex items-center justify-center">
+                <span className="text-4xl">👨‍💼</span>
+              </div>
+              <h3 className="text-xl font-bold text-red-700 mb-2">Sarah Mitchell</h3>
+              <p className="text-red-600 font-semibold mb-3">Chief Operating Officer</p>
+              <p className="text-gray-700 text-sm">
+                20+ years in private banking operations and regulatory compliance. Expert in Cayman Islands financial regulations.
+              </p>
+            </div>
+            
+            <div className="bg-white border-2 border-red-200 rounded-lg p-6 shadow-lg text-center">
+              <div className="w-32 h-32 rounded-full mx-auto mb-4 bg-red-100 flex items-center justify-center">
+                <span className="text-4xl">👩‍💼</span>
+              </div>
+              <h3 className="text-xl font-bold text-red-700 mb-2">Dr. James Chen</h3>
+              <p className="text-red-600 font-semibold mb-3">Chief Investment Officer</p>
+              <p className="text-gray-700 text-sm">
+                PhD in Economics, 18+ years in portfolio management and quantitative analysis. Former Goldman Sachs executive.
               </p>
             </div>
           </div>
@@ -1041,26 +1134,41 @@ const AlhambraBankApp = () => {
 
         {/* Values */}
         <div>
-          <h2 className="text-2xl font-bold text-red-700 text-center mb-8">Our Values</h2>
+          <h2 className="text-2xl font-bold text-red-700 text-center mb-8">Our Core Values</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 icon: "🛡️",
                 title: "Integrity",
-                description: "We conduct our business with the highest ethical standards and transparency."
+                description: "We conduct our business with the highest ethical standards, transparency, and unwavering commitment to doing what is right for our clients."
               },
               {
                 icon: "🤝",
                 title: "Trust",
-                description: "We build lasting relationships based on mutual respect and confidentiality."
+                description: "We build lasting relationships based on mutual respect, confidentiality, and the understanding that your success is our success."
               },
               {
                 icon: "🎯",
                 title: "Excellence",
-                description: "We strive for perfection in every aspect of our service delivery."
+                description: "We strive for perfection in every aspect of our service delivery, continuously raising the bar for private banking excellence."
+              },
+              {
+                icon: "🌍",
+                title: "Global Perspective",
+                description: "We bring international expertise and local knowledge to provide comprehensive solutions for our global clientele."
+              },
+              {
+                icon: "🔒",
+                title: "Confidentiality",
+                description: "We maintain the highest standards of privacy and discretion, protecting our clients' information with bank-grade security."
+              },
+              {
+                icon: "💡",
+                title: "Innovation",
+                description: "We embrace cutting-edge technology and innovative solutions while honoring time-tested banking principles."
               }
             ].map((value, index) => (
-              <div key={index} className="text-center p-6 bg-red-50 rounded-lg">
+              <div key={index} className="text-center p-6 bg-red-50 rounded-lg border border-red-200">
                 <div className="text-4xl mb-4">{value.icon}</div>
                 <h3 className="text-xl font-bold text-red-700 mb-3">{value.title}</h3>
                 <p className="text-gray-700">{value.description}</p>
