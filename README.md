@@ -1,7 +1,11 @@
-# 🏛️ Alhambra Bank & Trust - Interactive Banking Platform
+# 🏦 Alhambra Bank & Trust - Complete Digital Banking Platform
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Available-brightgreen)](https://8080-i4wat3j76sdaf8wbzi7l8-5761bc9a.manusvm.computer)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Available-brightgreen)](https://alhambra-6eqnvx.manus.space)
+[![License](https://img.shields.io/badge/License-Proprietary-red.svg)](LICENSE)
 [![React](https://img.shields.io/badge/React-18.0+-blue)](https://reactjs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
+[![AWS](https://img.shields.io/badge/AWS-Ready-orange.svg)](https://aws.amazon.com/)
+[![Docker](https://img.shields.io/badge/Docker-Supported-blue.svg)](https://docker.com/)
 [![Vite](https://img.shields.io/badge/Vite-6.3+-purple)](https://vitejs.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.0+-teal)](https://tailwindcss.com/)
 
